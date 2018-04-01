@@ -1,1 +1,5 @@
-./idea
+,idea/
+out/
+vcs.xml
+worksapce.xml
+
