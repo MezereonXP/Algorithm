@@ -27,4 +27,5 @@ public class FindNumInRotateArray {
         int currentNumPos = originNumPos>roateLength?originNumPos-roateLength-1:numbers.length+originNumPos-roateLength-1;
         return numbers[currentNumPos];
     }
+
 }
