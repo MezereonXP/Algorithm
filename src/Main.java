@@ -2,23 +2,28 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String line = "mi zhizhqpoem";
-        char[] s1 = line.split(" ")[0].toCharArray();
-        char[] s2 = line.split(" ")[1].toCharArray();
-        int[] count1 = new int[26];
-        int[] count2 = new int[26];
-        for (char c:s1){
-            count1[c-'a']++;
+        String line = "0 200";
+        int level = Integer.parseInt(line.split(" ")[0]);
+        int defend = Integer.parseInt(line.split(" ")[1]);
+
+        double axe = 185;
+        double bow = 180;
+
+        double freeAXE = (defend-100-level*10)/(1.0*(602+(defend-100-level*10)));
+        axe *= (1-freeAXE);
+
+        double freeBOW = (defend*0.55)/(1.0*(602+(defend*0.55)));
+
+        bow *= (1-freeBOW);
+
+        if (axe == bow){
+            System.out.println("same");
+        } else {
+            System.out.println(axe>bow?"axe":"bow");
         }
-        for (char c:s2){
-            count2[c-'a']++;
-        }
-        for (int i=0;i<count1.length;i++){
-            if (count1[i]>count2[i]){
-                System.out.println("false");
-            }
-        }
-        System.out.println("true");
+
+
+
 
     }
 }
