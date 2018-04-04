@@ -13,9 +13,7 @@ public class Main {
         axe *= (1-freeAXE);
 
         double freeBOW = (defend*0.55)/(1.0*(602+(defend*0.55)));
-
         bow *= (1-freeBOW);
-
         if (axe == bow){
             System.out.println("same");
         } else {
