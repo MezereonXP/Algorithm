@@ -1,3 +1,5 @@
+import DP.MoveK;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -19,6 +21,9 @@ public class Main {
         } else {
             System.out.println(axe>bow?"axe":"bow");
         }
+
+        MoveK moveK = new MoveK();
+        System.out.println(moveK.move("1432219,7"));
 
 
 
