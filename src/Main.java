@@ -1,3 +1,4 @@
+import BackTrack.CountPossibleWays;
 import DP.MoveK;
 
 public class Main {
@@ -22,8 +23,8 @@ public class Main {
             System.out.println(axe>bow?"axe":"bow");
         }
 
-        MoveK moveK = new MoveK();
-        System.out.println(moveK.move("1432219,7"));
+        CountPossibleWays countPossibleWays = new CountPossibleWays();
+        countPossibleWays.count("1,2,3 4");
 
 
 
