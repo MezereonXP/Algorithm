@@ -1,5 +1,6 @@
 import BackTrack.CountPossibleWays;
 import DP.MoveK;
+import FindNum.FindNiceNum;
 
 public class Main {
 
@@ -25,6 +26,8 @@ public class Main {
 
         CountPossibleWays countPossibleWays = new CountPossibleWays();
         countPossibleWays.count("1,2,3 4");
+        FindNiceNum findNiceNum = new FindNiceNum();
+        System.out.println(findNiceNum.find("8"));
 
 
 
