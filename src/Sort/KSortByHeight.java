@@ -4,6 +4,8 @@ package Sort;/**
 
 import tool.Tool;
 
+import java.util.LinkedList;
+
 /**
  * @program: KSortByHeight
  * @description: To solve k sort problem
@@ -14,7 +16,7 @@ import tool.Tool;
 public class KSortByHeight {
 
     public static void main(String[] args) {
-        Tool.displayResult(solution("[[7,0],[4,4],[7,1],[5,3],[6,1],[5,2]]"));
+        Tool.displayResult(solution("[[7,0],[4,4],[7,1],[5,0],[6,1],[5,2],[3,3]]"));
     }
 
     /*
@@ -37,58 +39,41 @@ public class KSortByHeight {
         String[] items = data.split("],");
         int[] heights = new int[items.length];
         int[] k = new int[items.length];
-        int[] newHeights = heights.clone();
-        int[] newK = k.clone();
         int position = 0;
         for (String item : items) {
             heights[position] = Integer.parseInt(item.split(",")[0].substring(1));
             k[position++] = Integer.parseInt(item.split(",")[1]);
         }
-        // 大范围的调整， 使得所有的排序是可能的， 也就是前面必然有大于k的高度较高的数
-        for (int i = 0; i < heights.length; i++) {
-            int temp = k[i];
-            while (k[temp] > temp) {
-                temp++;
-            }
-            if (temp < heights.length) {
-                int tempHeight = heights[temp];
-                heights[temp] = heights[i];
-                heights[i] = tempHeight;
-                int tempK = k[temp];
-                k[temp] = k[i];
-                k[i] = tempK;
+        // 对<h, k>进行排序
+        for (int i = 0; i < heights.length - 1; i++) {
+            for (int j = i + 1; j < heights.length; j++) {
+                if (heights[i] > heights[j] || (heights[i] == heights[j] && k[i] < k[j])) {
+                    int t = heights[i];
+                    heights[i] = heights[j];
+                    heights[j] = t;
+                    t = k[i];
+                    k[i] = k[j];
+                    k[j] = t;
+                }
             }
         }
-        //微调
-        for (int i = 0; i < heights.length; i++) {
-            int count = 0;
-            int p = 0;
-            while (p < i) {
-                count = heights[p++] >= heights[i] ? count + 1 : count;
-            }
-            int reset = 0;
-            while (count != k[i]) {
-                int flag = count > k[i] ? -1 : 1;
-                int temp = i + flag;
-                temp += flag;
-                if (temp < 0 || temp > heights.length - 1){
-                    break;
-                }
-                if (heights[temp] > heights[i]) {
-                    count += flag;
-                }
-                int tempHeight = heights[temp];
-                heights[temp] = heights[i];
-                heights[i] = tempHeight;
-                int tempK = k[temp];
-                k[temp] = k[i];
-                k[i] = tempK;
-                reset = 1;
-            }
-            if (reset == 1) {
-                i--;
+
+        LinkedList linkedListForHeights = new LinkedList();
+        LinkedList linkedListForK = new LinkedList();
+        for (int i = heights.length - 1; i >= 0; i--) {
+            if (i == heights.length - 1){
+                linkedListForHeights.add(heights[i]);
+                linkedListForK.add(k[i]);
+            } else {
+                linkedListForHeights.add(k[i], heights[i]);
+                linkedListForK.add(k[i], k[i]);
             }
         }
+        for (int i=0;i<linkedListForHeights.size();i++){
+            heights[i] = (int) linkedListForHeights.get(i);
+            k[i] = (int) linkedListForK.get(i);
+        }
+
         String first = "[";
         String last = "]";
         for (int i = 0; i < heights.length; i++) {
