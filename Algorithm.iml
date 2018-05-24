@@ -12,5 +12,6 @@
     <orderEntry type="library" name="gant-1.9.11" level="application" />
     <orderEntry type="library" name="gant-1.9.11" level="application" />
     <orderEntry type="library" scope="TEST" name="Arquillian JUnit:Release" level="project" />
+    <orderEntry type="library" name="groovy-1.8.6" level="application" />
   </component>
 </module>
