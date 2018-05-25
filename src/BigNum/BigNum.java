@@ -27,7 +27,9 @@ public class BigNum {
     private static String solution(String line) {
         // 在此处理单行数据
         if (line.contains("<")){
-
+            String str1 = line.split("<")[0];
+            String str2 = line.split("<")[1];
+            return str1.length()>str2.length()?"N":"Y";
         } else if (line.contains(">")){
 
         } else {
